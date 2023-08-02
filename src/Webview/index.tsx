@@ -1,3 +1,6 @@
+import {ParamListBase} from '@react-navigation/native';
+import {StackScreenProps} from '@react-navigation/stack';
+
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 
@@ -44,7 +47,13 @@ function Section({children, title}: SectionProps): JSX.Element {
   );
 }
 
-function WebView({navigation}): JSX.Element {
+type RootStackParamList = {
+  ListScreen: ParamListBase;
+};
+
+type Props = StackScreenProps<RootStackParamList>;
+
+function WebView({navigation}: Props): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
