@@ -1,6 +1,5 @@
 import {ParamListBase} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
-import axios from 'axios';
 
 import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
@@ -63,17 +62,6 @@ function WebView({navigation}: Props): JSX.Element {
 
   console.log(test, 'test webview');
 
-  useEffect(() => {
-    getViaCep();
-  }, []);
-
-  const getViaCep = async () => {
-    const {data} = await axios.get(
-      'https://api.github.com/search/repositories?q=TERMO_DA_BUSCA&per_page=10',
-    );
-    console.log(data.items[0]);
-  };
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -91,11 +79,8 @@ function WebView({navigation}: Props): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate('ListScreen')}>
-            <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-              screen and then come back to see your edits.
-            </Section>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Section title="Step One">Navegar para ListScreen</Section>
           </TouchableOpacity>
         </View>
       </ScrollView>

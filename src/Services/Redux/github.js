@@ -1,22 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+const initialState = {
+  gitHubList: [],
+  selectedRepo: {},
+};
+
 const github = createSlice({
   name: 'github',
-  initialState: {
-    gitHubList: [],
-    selectedRepo: {},
-  },
+  initialState,
   reducers: {
     addToList: (state, action) => {
-      const newGitHubList = [...state.gitHubList, ...action.payload.list];
+      const newGitHubList = [...state.gitHubList, ...action.payload];
       return {
         ...state,
         gitHubList: newGitHubList,
       };
     },
     addNewList: (state, action) => {
-      const newGitHubList = action.payload.list;
-      return {...state, gitHubList: newGitHubList};
+      return {...state, gitHubList: action.payload};
     },
     selectRepo: (state, action) => {
       return {...state, selectedRepo: action.payload.selectRepo};
