@@ -1,14 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ParamListBase} from '@react-navigation/native';
 
 import WebView from '../Webview';
 import ListScreen from '../ListScreen';
-
-export type RootStackParamList = {
-  WebView: ParamListBase;
-  ListScreen: ParamListBase;
-};
 
 const Stack = createNativeStackNavigator();
 
