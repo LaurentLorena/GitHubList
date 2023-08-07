@@ -61,7 +61,7 @@ function WebView({navigation}: Props): JSX.Element {
 
   const test = useSelector(state => state.github);
 
-  console.log(test);
+  console.log(test, 'test webview');
 
   useEffect(() => {
     getViaCep();
@@ -71,7 +71,7 @@ function WebView({navigation}: Props): JSX.Element {
     const {data} = await axios.get(
       'https://api.github.com/search/repositories?q=TERMO_DA_BUSCA&per_page=10',
     );
-    console.log(data);
+    console.log(data.items[0]);
   };
 
   const backgroundStyle = {

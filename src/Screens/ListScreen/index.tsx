@@ -16,7 +16,7 @@ function ListScreen(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const test = useSelector(state => state.github);
 
-  console.log(test, 'teste eu');
+  console.log(test, 'teste eu listScreen');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
