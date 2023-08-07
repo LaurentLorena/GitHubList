@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {
   SafeAreaView,
@@ -18,6 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {addNewList} from '../../Services/Redux/github';
+import {CustomTextInput} from './Components/TextInput';
 
 function ListScreen(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -49,9 +50,7 @@ function ListScreen(): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <View style={{borderWidth: 1, margin: 8, borderRadius: 8, padding: 8}}>
-          <TextInput />
-        </View>
+        <CustomTextInput />
 
         <TouchableOpacity onPress={() => getList()}>
           <Text>getList</Text>
