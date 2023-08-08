@@ -9,7 +9,11 @@ const Stack = createNativeStackNavigator();
 const GitHubStackNavigation = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="ListScreen" component={ListScreen} />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="ListScreen"
+        component={ListScreen}
+      />
       <Stack.Screen name="WebView" component={WebView} />
     </Stack.Navigator>
   );

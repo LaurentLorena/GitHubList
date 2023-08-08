@@ -1,4 +1,4 @@
-const {View} = require('react-native');
+const {View, SafeAreaView} = require('react-native');
 const {styled} = require('styled-components');
 
 export const CustomTextInputContainerStyled = styled(View)`
@@ -6,4 +6,8 @@ export const CustomTextInputContainerStyled = styled(View)`
   margin: 8px;
   border-radius: 8px;
   padding: 8px;
+`;
+
+export const ListScreenContainer = styled(SafeAreaView)`
+  flex: 1;
 `;

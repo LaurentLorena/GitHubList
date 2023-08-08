@@ -5,10 +5,8 @@ import {
   ScrollView,
   StatusBar,
   Text,
-  TextInput,
   TouchableOpacity,
   useColorScheme,
-  View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -16,9 +14,9 @@ import axios from 'axios';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {addNewList} from '../../Services/Redux/github';
 import {CustomTextInput} from './Components/TextInput';
+import WebView from 'src/Screens/Webview/index';
 
 function ListScreen(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -37,23 +35,17 @@ function ListScreen(): JSX.Element {
     }
   };
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+    <SafeAreaView>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <CustomTextInput />
 
         <TouchableOpacity onPress={() => getList()}>
           <Text>getList</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('WebView')}>
+          <Text>Go to WebView</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
