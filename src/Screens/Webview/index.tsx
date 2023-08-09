@@ -1,8 +1,7 @@
 import {ParamListBase} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 
-import React, {useEffect} from 'react';
-import type {PropsWithChildren} from 'react';
+import React from 'react';
 
 import {
   SafeAreaView,
@@ -18,36 +17,7 @@ import {
 import {useSelector} from 'react-redux';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import {Container, StyledWebView} from './style';
 
 type RootStackParamList = {
   ListScreen: ParamListBase;
@@ -55,7 +25,7 @@ type RootStackParamList = {
 
 type Props = StackScreenProps<RootStackParamList>;
 
-function WebView({navigation}: Props): JSX.Element {
+function WebViewScreen({navigation}: Props): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const test = useSelector(state => state.github);
@@ -68,43 +38,16 @@ function WebView({navigation}: Props): JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Section title="Step One">Navegar para ListScreen</Section>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+      <Container>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text>Navegar para ListScreen</Text>
+        </TouchableOpacity>
+        <StyledWebView
+          source={{uri: 'https://github.com/pu2nvu/svxlink-automake'}}
+        />
+      </Container>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default WebView;
+export default WebViewScreen;
