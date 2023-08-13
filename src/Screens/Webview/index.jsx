@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 
 import {Container, StyledWebView} from './style';
 
-function WebViewScreen(): JSX.Element {
+function WebViewScreen() {
   const repo = useSelector(state => state.github.selectedRepo);
 
   console.log(repo, 'test webview');

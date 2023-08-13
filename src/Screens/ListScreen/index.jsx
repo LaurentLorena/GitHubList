@@ -16,7 +16,7 @@ import {Container, TitleStyled} from './style';
 import Card from './Components/Card';
 import axios from 'axios';
 
-function ListScreen(): JSX.Element {
+function ListScreen() {
   const [requestData, setRequestData] = useState(null);
   const {termToSearch, page} = useSelector(state => state.github);
   const navigation = useNavigation();
@@ -48,9 +48,10 @@ function ListScreen(): JSX.Element {
     if (termToSearch !== '') {
       newRequest(termToSearch);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [termToSearch]);
 
-  const renderItem = ({item}: {item: any}) => {
+  const renderItem = ({item}) => {
     return <Card data={item} onPress={() => selectRepoHandle(item.html_url)} />;
   };
 
