@@ -1,26 +1,23 @@
 import React, {useEffect} from 'react';
 
 import {
+  FlatList,
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  Text,
   TouchableOpacity,
-  useColorScheme,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
-import axios from 'axios';
-
 import {useNavigation} from '@react-navigation/native';
 
-import {addNewList} from '../../Services/Redux/github';
+import {addNewList, selectRepo} from '../../Services/Redux/github';
 import {CustomTextInput} from './Components/TextInput';
 import WebView from 'src/Screens/Webview/index';
 import useGetList from '../../Services/Hook/useGetList';
+import {Container, TitleStyled} from './style';
+import Card from './Components/Card';
 
 function ListScreen(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   const test = useSelector(state => state.github);
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -31,21 +28,44 @@ function ListScreen(): JSX.Element {
   const {data, error, loading} = useGetList(apiUrl);
 
   useEffect(() => {
-    console.log('data ' + data);
+    // console.log('data ' + JSON.stringify(data?.items));
     console.log('data ' + error);
     console.log('data ' + loading);
   }, [data, error, loading]);
 
+  const selectRepoHandle = url => {
+    console.log(url);
+    dispatch(selectRepo(url));
+    navigation.navigate('WebView');
+  };
+
+  const renderItem = ({item}: {item: any}) => {
+    // selectRepoHandle(item.html_url);
+    return <Card data={item} onPress={() => selectRepoHandle(item.html_url)} />;
+  };
+
+  const loadMoreData = () => {
+    // Fetch and append more data to your existing data array
+    // Update the state with the new data
+  };
+
   return (
     <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <StatusBar />
+      <Container contentInsetAdjustmentBehavior="automatic">
+        <TitleStyled>Repositórios</TitleStyled>
         <CustomTextInput />
-
-        <TouchableOpacity onPress={() => navigation.navigate('WebView')}>
-          <Text>Go to WebView</Text>
-        </TouchableOpacity>
-      </ScrollView>
+        <TouchableOpacity onPress={() => navigation.navigate('WebView')} />
+        {data && (
+          <FlatList
+            data={data.items}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            onEndReached={loadMoreData}
+            onEndReachedThreshold={0.1}
+          />
+        )}
+      </Container>
     </SafeAreaView>
   );
 }

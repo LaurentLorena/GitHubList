@@ -2,7 +2,9 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   gitHubList: [],
-  selectedRepo: {},
+  selectedRepo: '',
+  termToSearch: '',
+  page: 1,
 };
 
 const github = createSlice({
@@ -20,10 +22,17 @@ const github = createSlice({
       return {...state, gitHubList: action.payload};
     },
     selectRepo: (state, action) => {
-      return {...state, selectedRepo: action.payload.selectRepo};
+      return {...state, selectedRepo: action.payload};
+    },
+    setTermToSearch: (state, action) => {
+      return {...state, termToSearch: action.payload};
+    },
+    setPage: (state, action) => {
+      return {...state, page: action.payload};
     },
   },
 });
 
-export const {addToList, addNewList, selectRepo} = github.actions;
+export const {addToList, addNewList, selectRepo, setTermToSearch, setPage} =
+  github.actions;
 export default github.reducer;
