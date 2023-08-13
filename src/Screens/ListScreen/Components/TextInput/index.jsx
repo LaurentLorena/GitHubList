@@ -6,6 +6,7 @@ import {setTermToSearch} from '../../../../Services/Redux/github';
 export const CustomTextInput = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
+  const placeHolder = 'Busca por repositórios';
 
   const handleBlur = () => {
     dispatch(setTermToSearch(inputValue));
@@ -16,13 +17,12 @@ export const CustomTextInput = () => {
   };
 
   const handleInputChange = text => {
-    console.log('Typed text:', text);
     setInputValue(text);
   };
   return (
     <CustomTextInputContainerStyled>
       <InputStyled
-        placeholder="Busca por repositórios"
+        placeholder={placeHolder}
         onBlur={handleBlur}
         onSubmitEditing={handleSubmitEditing}
         onChangeText={handleInputChange}

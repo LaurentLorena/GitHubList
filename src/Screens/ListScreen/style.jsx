@@ -5,6 +5,6 @@ export const TitleStyled = styled.Text`
   font-weight: bold;
 `;
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   margin: 16px;
 `;

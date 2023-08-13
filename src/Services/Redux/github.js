@@ -25,6 +25,7 @@ const github = createSlice({
       return {...state, selectedRepo: action.payload};
     },
     setTermToSearch: (state, action) => {
+      console.log('chamou com ==' + action.payload);
       return {...state, termToSearch: action.payload};
     },
     setPage: (state, action) => {
