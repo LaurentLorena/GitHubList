@@ -13,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {selectRepo, setPage} from '../../Services/Redux/github';
 import {CustomTextInput} from './Components/TextInput';
 import {Container, TitleStyled} from './style';
-import Card from './Components/Card';
+import {Card} from './Components/Card/card';
 import axios from 'axios';
 
 function ListScreen() {
@@ -23,8 +23,8 @@ function ListScreen() {
   const dispatch = useDispatch();
   const title = 'Repositórios';
 
-  const getRepos = async (toSearch = '', page = 1) => {
-    const url = `https://api.github.com/search/repositories?q=${toSearch}&per_page=10&page=${page}`;
+  const getRepos = async (toSearch = '', pg = 1) => {
+    const url = `https://api.github.com/search/repositories?q=${toSearch}&per_page=10&page=${pg}`;
     const {data} = await axios.get(url);
     if (data) {
       return data;
@@ -38,7 +38,6 @@ function ListScreen() {
     setRequestData(data.items);
   };
 
-  console.log(termToSearch + '-- test ListScreen --' + page);
   const selectRepoHandle = url => {
     dispatch(selectRepo(url));
     navigation.navigate('WebView');
