@@ -28,7 +28,6 @@ function ListScreen() {
     const url = `https://api.github.com/search/repositories?q=${toSearch}&per_page=10&page=${pg}`;
     const {data} = await axios.get(url);
     if (data) {
-      console.log(data);
       return data;
     } else {
       Alert.alert(
