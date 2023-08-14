@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {
+  Alert,
   FlatList,
   SafeAreaView,
   StatusBar,
@@ -27,9 +28,13 @@ function ListScreen() {
     const url = `https://api.github.com/search/repositories?q=${toSearch}&per_page=10&page=${pg}`;
     const {data} = await axios.get(url);
     if (data) {
+      console.log(data);
       return data;
     } else {
-      console.log('show alert with error');
+      Alert.alert(
+        'Ocorreu um erro',
+        'Algo deu errado, tente novamente mais tarde',
+      );
     }
   };
 
