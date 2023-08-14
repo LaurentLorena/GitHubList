@@ -11,7 +11,7 @@ import {
 
 export const Card = ({data, onPress}) => {
   return (
-    <CardContainer onPress={onPress}>
+    <CardContainer testID="card-container" onPress={onPress}>
       <AvatarContainer>
         <Avatar testID="avatar" source={{uri: data.owner.avatar_url}} />
       </AvatarContainer>
