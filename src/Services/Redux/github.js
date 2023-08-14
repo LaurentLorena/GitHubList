@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   gitHubList: [],
-  selectedRepo: '',
+  selectedRepo: {url: '', name: ''},
   termToSearch: '',
   page: 1,
 };

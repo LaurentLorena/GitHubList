@@ -38,8 +38,8 @@ function ListScreen() {
     setRequestData(data.items);
   };
 
-  const selectRepoHandle = url => {
-    dispatch(selectRepo(url));
+  const selectRepoHandle = (url, name) => {
+    dispatch(selectRepo({url, name}));
     navigation.navigate('WebView');
   };
 
@@ -51,7 +51,12 @@ function ListScreen() {
   }, [termToSearch]);
 
   const renderItem = ({item}) => {
-    return <Card data={item} onPress={() => selectRepoHandle(item.html_url)} />;
+    return (
+      <Card
+        data={item}
+        onPress={() => selectRepoHandle(item.html_url, item.name)}
+      />
+    );
   };
 
   const loadMoreData = async () => {
