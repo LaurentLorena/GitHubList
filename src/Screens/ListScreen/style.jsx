@@ -7,5 +7,6 @@ export const TitleStyled = styled.Text`
 `;
 
 export const Container = styled.View`
-  margin: 16px;
+  padding: 16px;
+  background: #fff;
 `;
