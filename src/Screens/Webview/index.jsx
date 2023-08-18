@@ -10,9 +10,11 @@ function WebViewScreen() {
   const navigation = useNavigation();
 
   navigation.setOptions({headerTitle: name});
+
+  console.log(url);
   return (
     <Container>
-      <StyledWebView source={{url}} />
+      <StyledWebView source={{uri: url}} />
     </Container>
   );
 }
