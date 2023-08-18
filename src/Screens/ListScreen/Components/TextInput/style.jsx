@@ -7,11 +7,14 @@ export const CustomTextInputContainerStyled = styled(View)`
   border-radius: 8px;
 `;
 
-export const InputStyled = styled.TextInput`
+export const InputStyled = styled.TextInput.attrs({
+  placeholderTextColor: '#000',
+})`
   border-color: gray;
   background-color: lightgray;
   padding: 8px;
   border-radius: 8px;
+  color: #000;
 `;
 
 export const ListScreenContainer = styled(SafeAreaView)`

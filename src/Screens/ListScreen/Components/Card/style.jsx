@@ -22,6 +22,7 @@ export const Avatar = styled(Image)`
 export const Title = styled.Text`
   font-size: 16px;
   font-weight: bold;
+  color: #000;
 `;
 
 export const OwnerContainer = styled.View`
@@ -31,6 +32,6 @@ export const OwnerContainer = styled.View`
 
 export const Texts = styled.Text`
   font-size: 14px;
-  color: '#48484A';
+  color: #48484a;
   margin-top: 4px;
 `;
